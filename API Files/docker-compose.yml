@@ -1,0 +1,13 @@
+services:
+  emotion-classifier:
+    build: .
+    ports:
+      - "${PORT:-4000}:4000"
+    environment:
+      - DEBUG=True
+      - MODEL_PATH=./Model/Ensemble_Average.h5
+      - THRESHOLD=0.5
+    volumes:
+      - ./Model:/app/Model
+      - ./uploads:/app/uploads
+      - ./back_end_classification.py:/app/back_end_classification.py
